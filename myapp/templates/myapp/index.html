@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Django Weather App</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary navbar-dark shadow-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand text-center" href="#">DJANGO WEATHER APP</a>
+      </div>
+    </nav>
+    <!-- EndNavbar -->
+    {% if error %}
+    <div
+      class="alert alert-danger alert-dismissible fade show mb-3"
+      role="alert"
+    >
+      {{ error }}
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {% endif %}
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-12">
+          <form method="POST" class="form-control">
+            {% csrf_token %}
+            <div class="input-group">
+              <input
+                type="text"
+                name="city-name"
+                class="form-control"
+                placeholder="Enter a city name here..."
+              />
+              <button class="btn btn-success m" type="submit">Search</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    {% if country_code %}
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-12"><b>City</b>: {{city}}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-12"><b>Country Code</b>: {{country_code}}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-12"><b>Temperature</b>: {{temperature}}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-12"><b>Description</b>: {{description}}</div>
+      </div>
+    </div>
+    {% endif %}
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
